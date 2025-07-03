@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Test - Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .test-item {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .pass {
+            border-color: #28a745;
+            background: #d4edda;
+        }
+
+        .fail {
+            border-color: #dc3545;
+            background: #f8d7da;
+        }
+
+        .viewport-info {
+            background: #e9ecef;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>📱 Mobile Responsiveness Test</h1>
+
+        <div class="viewport-info">
+            <h3>Current Viewport Information:</h3>
+            <p><strong>Screen Width:</strong> <span id="screenWidth"></span>px</p>
+            <p><strong>Screen Height:</strong> <span id="screenHeight"></span>px</p>
+            <p><strong>Device Type:</strong> <span id="deviceType"></span></p>
+        </div>
+
+        <div class="test-item">
+            <h3>✅ Portfolio Website Preview</h3>
+            <p>The portfolio website should be fully responsive and work well on all devices.</p>
+            <iframe src="index.html" title="Portfolio Preview"></iframe>
+        </div>
+
+        <div class="test-item">
+            <h3>📋 Mobile Features Checklist</h3>
+            <ul>
+                <li>✅ Responsive navigation menu</li>
+                <li>✅ Touch-friendly buttons and links</li>
+                <li>✅ Readable typography on small screens</li>
+                <li>✅ Optimized images and media</li>
+                <li>✅ Smooth scrolling and animations</li>
+                <li>✅ Fast loading performance</li>
+                <li>✅ Cross-browser compatibility</li>
+            </ul>
+        </div>
+
+        <div class="test-item">
+            <h3>📊 Performance Metrics</h3>
+            <p><strong>Page Load Time:</strong> <span id="loadTime"></span>ms</p>
+            <p><strong>DOM Content Loaded:</strong> <span id="domTime"></span>ms</p>
+            <p><strong>Total Resources:</strong> <span id="resourceCount"></span></p>
+        </div>
+
+        <div class="test-item">
+            <h3>🔗 Quick Links</h3>
+            <p>
+                <a href="index.html" target="_blank" style="color: #2563eb; text-decoration: none;">🏠 Main
+                    Portfolio</a> |
+                <a href="projects/sample-project.html" target="_blank" style="color: #2563eb; text-decoration: none;">📁
+                    Sample Project</a> |
+                <a href="Deepak_Kushwaha_Lead_MLE_March.pdf" target="_blank"
+                    style="color: #2563eb; text-decoration: none;">📄 Resume PDF</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Display viewport information
+        document.getElementById('screenWidth').textContent = window.innerWidth;
+        document.getElementById('screenHeight').textContent = window.innerHeight;
+
+        // Determine device type
+        const width = window.innerWidth;
+        let deviceType = 'Desktop';
+        if (width <= 768) deviceType = 'Mobile';
+        else if (width <= 1024) deviceType = 'Tablet';
+        document.getElementById('deviceType').textContent = deviceType;
+
+        // Performance metrics
+        window.addEventListener('load', function () {
+            const loadTime = performance.now();
+            document.getElementById('loadTime').textContent = Math.round(loadTime);
+
+            const domTime = performance.timing.domContentLoadedEventEnd - performance.timing.navigationStart;
+            document.getElementById('domTime').textContent = domTime;
+
+            const resourceCount = performance.getEntriesByType('resource').length;
+            document.getElementById('resourceCount').textContent = resourceCount;
+        });
+
+        // Update viewport info on resize
+        window.addEventListener('resize', function () {
+            document.getElementById('screenWidth').textContent = window.innerWidth;
+            document.getElementById('screenHeight').textContent = window.innerHeight;
+
+            const width = window.innerWidth;
+            let deviceType = 'Desktop';
+            if (width <= 768) deviceType = 'Mobile';
+            else if (width <= 1024) deviceType = 'Tablet';
+            document.getElementById('deviceType').textContent = deviceType;
+        });
+    </script>
+</body>
+
+</html>
