@@ -874,16 +874,33 @@ footer {
     }
 
     .navbar-collapse {
-        background: var(--bg-primary);
+        background: #000000 !important;
         border-radius: 8px;
         margin-top: 0.5rem;
         padding: 1rem;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
         border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
+    .navbar-collapse.show {
+        background: #000000 !important;
+    }
+
+    .navbar-collapse.collapsing {
+        background: #000000 !important;
+    }
+
+    #navbarNav {
+        background: #000000 !important;
+    }
+
     .navbar-nav {
-        background: transparent;
+        background: #000000 !important;
+        padding: 0.5rem 0;
+    }
+
+    .navbar-nav .nav-item {
+        background: #000000 !important;
     }
 
     .navbar-nav .nav-link {
