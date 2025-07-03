@@ -867,6 +867,12 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .navbar {
+        background: var(--bg-primary) !important;
+        backdrop-filter: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
     .section-title {
         font-size: 1.75rem;
     }
