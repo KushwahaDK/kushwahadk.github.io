@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
 // Smooth scrolling for navigation links
 function initSmoothScrolling() {
     const navLinks = document.querySelectorAll('a[href^="#"]');
+    const navbarCollapse = document.getElementById('navbarNav');
 
     navLinks.forEach(link => {
         link.addEventListener('click', function (e) {
@@ -29,13 +30,28 @@ function initSmoothScrolling() {
             const targetElement = document.getElementById(targetId);
 
             if (targetElement) {
-                const navbarHeight = document.querySelector('.navbar').offsetHeight;
-                const targetPosition = targetElement.offsetTop - navbarHeight;
+                // Auto-collapse mobile menu if it's open
+                if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+                    const bootstrapCollapse = new bootstrap.Collapse(navbarCollapse, {
+                        toggle: false
+                    });
+                    bootstrapCollapse.hide();
+                }
 
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
+                // Calculate proper offset for mobile devices
+                const navbar = document.querySelector('.navbar');
+                const navbarHeight = navbar.offsetHeight;
+                const isMobile = window.innerWidth <= 768;
+                const additionalOffset = isMobile ? 20 : 0; // Extra offset for mobile
+                const targetPosition = targetElement.offsetTop - navbarHeight - additionalOffset;
+
+                // Small delay to ensure navbar collapse animation completes
+                setTimeout(() => {
+                    window.scrollTo({
+                        top: Math.max(0, targetPosition),
+                        behavior: 'smooth'
+                    });
+                }, navbarCollapse && navbarCollapse.classList.contains('show') ? 300 : 0);
             }
         });
     });
