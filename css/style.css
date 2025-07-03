@@ -872,13 +872,14 @@ footer {
     }
 
     .hero-section {
-        padding: 6rem 0 2rem 0;
-        min-height: 90vh;
+        padding: 8rem 0 2rem 0;
+        min-height: 100vh;
     }
 
     .hero-content {
         text-align: center;
         margin-bottom: 2rem;
+        padding-top: 2rem;
     }
 
     .social-links {
@@ -926,8 +927,12 @@ footer {
 
 @media (max-width: 576px) {
     .hero-section {
-        padding: 7rem 0 2rem 0;
-        min-height: 95vh;
+        padding: 10rem 0 2rem 0;
+        min-height: 100vh;
+    }
+
+    .hero-content {
+        padding-top: 3rem;
     }
 
     .hero-buttons {
