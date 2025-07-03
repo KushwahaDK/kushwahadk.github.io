@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     initProgressBars();
     initContactForm();
     initThemeToggle();
+    initMobileScrollFix();
 
     // Add loading animations
     addLoadingAnimations();
@@ -31,7 +32,9 @@ function initSmoothScrolling() {
 
             if (targetElement) {
                 // Auto-collapse mobile menu if it's open
-                if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+                const isMenuOpen = navbarCollapse && navbarCollapse.classList.contains('show');
+                
+                if (isMenuOpen) {
                     const bootstrapCollapse = new bootstrap.Collapse(navbarCollapse, {
                         toggle: false
                     });
@@ -40,18 +43,36 @@ function initSmoothScrolling() {
 
                 // Calculate proper offset for mobile devices
                 const navbar = document.querySelector('.navbar');
-                const navbarHeight = navbar.offsetHeight;
                 const isMobile = window.innerWidth <= 768;
-                const additionalOffset = isMobile ? 20 : 0; // Extra offset for mobile
+                
+                // Get accurate navbar height and add mobile-specific offsets
+                const navbarHeight = navbar.getBoundingClientRect().height;
+                let additionalOffset = 0;
+                
+                if (isMobile) {
+                    // Mobile devices need more offset due to navbar styling and potential browser UI
+                    additionalOffset = 30;
+                } else {
+                    // Desktop devices need minimal offset
+                    additionalOffset = 10;
+                }
+                
                 const targetPosition = targetElement.offsetTop - navbarHeight - additionalOffset;
 
-                // Small delay to ensure navbar collapse animation completes
-                setTimeout(() => {
+                // Function to perform scroll
+                const performScroll = () => {
                     window.scrollTo({
                         top: Math.max(0, targetPosition),
                         behavior: 'smooth'
                     });
-                }, navbarCollapse && navbarCollapse.classList.contains('show') ? 300 : 0);
+                };
+
+                // Delay scroll if menu was open to allow collapse animation
+                if (isMenuOpen) {
+                    setTimeout(performScroll, 350);
+                } else {
+                    performScroll();
+                }
             }
         });
     });
@@ -272,6 +293,44 @@ function initThemeToggle() {
         document.documentElement.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
     });
+}
+
+// Mobile scroll improvements
+function initMobileScrollFix() {
+    // Additional mobile-specific scroll behaviors
+    let isMobile = window.innerWidth <= 768;
+    
+    // Update mobile detection on resize
+    window.addEventListener('resize', function() {
+        isMobile = window.innerWidth <= 768;
+    });
+    
+    // Handle viewport changes that might affect scroll position
+    window.addEventListener('orientationchange', function() {
+        setTimeout(() => {
+            // Recalculate scroll positions after orientation change
+            const currentHash = window.location.hash;
+            if (currentHash) {
+                const targetElement = document.getElementById(currentHash.substring(1));
+                if (targetElement) {
+                    const navbar = document.querySelector('.navbar');
+                    const navbarHeight = navbar.getBoundingClientRect().height;
+                    const additionalOffset = isMobile ? 30 : 10;
+                    const targetPosition = targetElement.offsetTop - navbarHeight - additionalOffset;
+                    
+                    window.scrollTo({
+                        top: Math.max(0, targetPosition),
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        }, 500); // Allow time for orientation change to complete
+    });
+    
+    // Improve mobile touch scrolling performance
+    if (isMobile) {
+        document.body.style.webkitOverflowScrolling = 'touch';
+    }
 }
 
 // Add loading animations to elements

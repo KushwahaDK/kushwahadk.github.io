@@ -1023,9 +1023,9 @@ footer {
     }
 }
 
-/* Smooth scrolling offset for fixed navbar */
+/* Smooth scrolling handled by JavaScript for precise mobile control */
 html {
-    scroll-padding-top: 70px;
+    scroll-behavior: smooth;
 }
 
 /* Custom scrollbar */
