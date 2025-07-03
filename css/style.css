@@ -4,7 +4,7 @@
 :root {
     --primary-color: #60a5fa;
     --secondary-color: #3b82f6;
-    --accent-color: #93c5fd;
+    --timeline-header-color: #001b47;
     --text-dark: #f1f5f9;
     --text-light: #cbd5e1;
     --bg-light: #1e293b;
@@ -237,10 +237,10 @@ h6 {
 }
 
 .role-details {
-    color: rgba(255, 255, 255, 0.95);
+    color: #00ffff;
     font-size: 1.1rem;
     font-weight: 600;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
     letter-spacing: 0.5px;
 }
 
@@ -249,12 +249,12 @@ h6 {
 }
 
 .role-details span:first-child {
-    color: rgba(255, 255, 255, 1);
+    color: #00ffff;
     font-weight: 700;
 }
 
 .role-details span:nth-child(2) {
-    color: rgba(255, 255, 255, 0.9);
+    color: #00e6e6;
     font-weight: 600;
 }
 
@@ -418,42 +418,41 @@ h6 {
 /* Timeline */
 .timeline {
     position: relative;
-    padding-left: 0;
+    padding-left: 1.5rem;
 }
 
 .timeline::before {
     content: '';
     position: absolute;
-    left: 0;
+    left: 8px;
     top: 0;
     bottom: 0;
-    width: 4px;
-    background: linear-gradient(180deg, var(--primary-color), var(--accent-color));
-    border-radius: 2px;
+    width: 2px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 1px;
 }
 
 .timeline-item {
     position: relative;
     margin-bottom: 2rem;
-    padding-left: 2.5rem;
+    padding-left: 0;
 }
 
 .timeline-marker {
     position: absolute;
-    left: -6px;
-    top: 1rem;
-    width: 12px;
-    height: 12px;
+    left: 4px;
+    top: 1.5rem;
+    width: 10px;
+    height: 10px;
     background: var(--primary-color);
     border-radius: 50%;
-    border: 3px solid white;
-    box-shadow: 0 0 0 3px var(--primary-color);
-    z-index: 2;
+    border: 2px solid var(--bg-primary);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
 }
 
 .timeline-content {
     background: var(--bg-card);
-    border-radius: 12px;
+    border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     transition: var(--transition);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -462,13 +461,9 @@ h6 {
     margin-bottom: 1.5rem;
 }
 
-.timeline-content:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border-left-color: var(--secondary-color);
-}
 
 .timeline-header {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background: linear-gradient(135deg, var(--timeline-header-color), var(--timeline-header-color));
     color: white;
     padding: 1.2rem 1.5rem;
     margin: 0;
@@ -477,10 +472,10 @@ h6 {
     justify-content: space-between;
 }
 
-.timeline-header h4 {
+.timeline-header h7 {
     color: white;
     margin: 0;
-    font-size: 1.3rem;
+    font-size: 1.0rem;
     font-weight: 600;
 }
 
@@ -739,13 +734,13 @@ h6 {
 /* Achievements Section */
 .achievements-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
 }
 
 .achievement-item {
     background: var(--bg-card);
-    padding: 1rem;
+    padding: 0.75rem;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-md);
     text-align: center;
@@ -758,27 +753,29 @@ h6 {
 }
 
 .achievement-icon {
-    width: 80px;
-    height: 80px;
+    width: 50px;
+    height: 50px;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    border-radius: 20px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 1rem;
+    margin: 0 auto 0.75rem;
     color: white;
-    font-size: 2rem;
-    box-shadow: 0 6px 16px rgba(76, 99, 210, 0.3);
+    font-size: 1.25rem;
+    box-shadow: 0 4px 12px rgba(76, 99, 210, 0.3);
 }
 
 .achievement-item h4 {
     color: var(--text-dark);
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
 }
 
 .achievement-item p {
     color: var(--text-light);
-    line-height: 1.6;
+    line-height: 1.4;
+    font-size: 0.85rem;
 }
 
 /* Contact Section */
