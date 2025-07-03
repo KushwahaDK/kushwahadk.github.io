@@ -873,6 +873,29 @@ footer {
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
+    .navbar-collapse {
+        background: var(--bg-primary);
+        border-radius: 8px;
+        margin-top: 0.5rem;
+        padding: 1rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .navbar-nav {
+        background: transparent;
+    }
+
+    .navbar-nav .nav-link {
+        padding: 0.75rem 1rem;
+        border-radius: 4px;
+        margin-bottom: 0.25rem;
+    }
+
+    .navbar-nav .nav-link:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
     .section-title {
         font-size: 1.75rem;
     }
