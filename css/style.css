@@ -1057,10 +1057,7 @@ footer {
     }
 
     .profile-info p {
-        font-size: 0.9rem;
-        line-height: 1.5;
-        color: var(--primary-color);
-        font-weight: 400;
+        font-size: 0.8rem;
     }
 
     .hero-buttons {
@@ -1080,33 +1077,14 @@ footer {
 
     .timeline {
         padding-left: 1rem;
-        max-width: none;
-    }
-
-    .timeline::before {
-        left: 8px;
-        transform: none;
     }
 
     .timeline-item {
         padding-left: 1.5rem;
-        flex-direction: row !important;
-        margin-bottom: 2rem;
     }
 
     .timeline-marker {
-        left: 4px;
-        top: 1.5rem;
-        width: 10px;
-        height: 10px;
-        border: 2px solid var(--bg-primary);
-        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
-        transform: none;
-    }
-
-    .timeline-content {
-        width: 100%;
-        margin: 0 !important;
+        left: -1.5rem;
     }
 
     .timeline-meta {
@@ -1133,6 +1111,21 @@ footer {
 
     .contact-info {
         padding: 2rem;
+    }
+
+    /* Mobile scroll button styling */
+    .scroll-next {
+        bottom: 0.5rem;
+        right: 1rem;
+    }
+
+    .scroll-btn i {
+        font-size: 1.5rem;
+        text-shadow: 0 0 10px rgba(100, 255, 218, 0.6);
+    }
+
+    .scroll-btn:hover i {
+        text-shadow: 0 0 15px rgba(100, 255, 218, 0.8);
     }
 }
 
