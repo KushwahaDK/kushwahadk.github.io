@@ -1148,6 +1148,10 @@ footer {
     .scroll-btn:hover i {
         text-shadow: 0 0 18px rgba(100, 255, 218, 0.8);
     }
+
+    #scroll-progress {
+        height: 3px;
+    }
 }
 
 @media (max-width: 576px) {
@@ -1314,4 +1318,27 @@ html {
     60% {
         transform: translateY(-3px);
     }
+}
+
+/* --- Scroll Percentage Progress Bar --- */
+#scroll-progress {
+    position: fixed;
+    left: 0;
+    height: 4px;
+    width: 0%;
+    background: var(--primary-color);
+    z-index: 9999;
+    transition: width 0.25s ease-out;
+}
+
+@media (max-width: 768px) {
+    #scroll-progress {
+        height: 3px;
+    }
+}
+
+/* --- Remove legacy next-section arrow --- */
+.scroll-next,
+.scroll-btn {
+    display: none !important;
 }

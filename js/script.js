@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
     initContactForm();
     initThemeToggle();
     initMobileScrollFix();
+    initScrollProgressBar();
 
     // Add loading animations
     addLoadingAnimations();
@@ -497,4 +498,32 @@ style.textContent = `
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     }
 `;
-document.head.appendChild(style); 
+document.head.appendChild(style);
+
+// Add scroll progress bar functionality
+function initScrollProgressBar() {
+    const progressEl = document.getElementById('scroll-progress');
+    if (!progressEl) return;
+
+    const navbar = document.querySelector('.navbar');
+
+    function updatePosition() {
+        const navHeight = navbar ? navbar.getBoundingClientRect().height : 0;
+        progressEl.style.top = navHeight + 'px';
+    }
+
+    function updateBar() {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = (scrollTop / docHeight) * 100;
+        progressEl.style.width = progress + '%';
+    }
+
+    // Initial calculations
+    updatePosition();
+    updateBar();
+
+    // Event listeners
+    window.addEventListener('resize', updatePosition);
+    window.addEventListener('scroll', updateBar);
+} 
