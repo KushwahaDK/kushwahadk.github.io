@@ -1115,17 +1115,32 @@ footer {
 
     /* Mobile scroll button styling */
     .scroll-next {
-        bottom: 0.5rem;
-        right: 1rem;
+        bottom: 1rem;
+        right: 1.5rem;
+        z-index: 20;
+    }
+
+    .scroll-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary-color);
+        text-decoration: none;
+        transition: var(--transition);
+    }
+
+    .scroll-btn:hover {
+        color: var(--primary-color);
     }
 
     .scroll-btn i {
-        font-size: 1.5rem;
-        text-shadow: 0 0 10px rgba(100, 255, 218, 0.6);
+        font-size: 1.8rem;
+        animation: bounce 2s infinite;
+        text-shadow: 0 0 12px rgba(100, 255, 218, 0.6);
     }
 
     .scroll-btn:hover i {
-        text-shadow: 0 0 15px rgba(100, 255, 218, 0.8);
+        text-shadow: 0 0 18px rgba(100, 255, 218, 0.8);
     }
 }
 
