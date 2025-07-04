@@ -33,7 +33,7 @@ function initSmoothScrolling() {
             if (targetElement) {
                 // Auto-collapse mobile menu if it's open
                 const isMenuOpen = navbarCollapse && navbarCollapse.classList.contains('show');
-                
+
                 if (isMenuOpen) {
                     const bootstrapCollapse = new bootstrap.Collapse(navbarCollapse, {
                         toggle: false
@@ -44,11 +44,11 @@ function initSmoothScrolling() {
                 // Calculate proper offset for mobile devices
                 const navbar = document.querySelector('.navbar');
                 const isMobile = window.innerWidth <= 768;
-                
+
                 // Get accurate navbar height and add mobile-specific offsets
                 const navbarHeight = navbar.getBoundingClientRect().height;
                 let additionalOffset = 0;
-                
+
                 if (isMobile) {
                     // Mobile devices need more offset due to navbar styling and potential browser UI
                     additionalOffset = 30;
@@ -56,7 +56,7 @@ function initSmoothScrolling() {
                     // Desktop devices need minimal offset
                     additionalOffset = 10;
                 }
-                
+
                 const targetPosition = targetElement.offsetTop - navbarHeight - additionalOffset;
 
                 // Function to perform scroll
@@ -299,14 +299,14 @@ function initThemeToggle() {
 function initMobileScrollFix() {
     // Additional mobile-specific scroll behaviors
     let isMobile = window.innerWidth <= 768;
-    
+
     // Update mobile detection on resize
-    window.addEventListener('resize', function() {
+    window.addEventListener('resize', function () {
         isMobile = window.innerWidth <= 768;
     });
-    
+
     // Handle viewport changes that might affect scroll position
-    window.addEventListener('orientationchange', function() {
+    window.addEventListener('orientationchange', function () {
         setTimeout(() => {
             // Recalculate scroll positions after orientation change
             const currentHash = window.location.hash;
@@ -317,7 +317,7 @@ function initMobileScrollFix() {
                     const navbarHeight = navbar.getBoundingClientRect().height;
                     const additionalOffset = isMobile ? 30 : 10;
                     const targetPosition = targetElement.offsetTop - navbarHeight - additionalOffset;
-                    
+
                     window.scrollTo({
                         top: Math.max(0, targetPosition),
                         behavior: 'smooth'
@@ -326,7 +326,7 @@ function initMobileScrollFix() {
             }
         }, 500); // Allow time for orientation change to complete
     });
-    
+
     // Improve mobile touch scrolling performance
     if (isMobile) {
         document.body.style.webkitOverflowScrolling = 'touch';
@@ -434,7 +434,7 @@ function initScrollToTop() {
         width: 50px;
         height: 50px;
         background: var(--primary-color);
-        color: white;
+        color: black;
         border: none;
         border-radius: 50%;
         cursor: pointer;
