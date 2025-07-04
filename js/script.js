@@ -42,26 +42,17 @@ function initSmoothScrolling() {
                     bootstrapCollapse.hide();
                 }
 
-                // Calculate proper offset for mobile devices
-                const navbar = document.querySelector('.navbar');
                 const isMobile = window.innerWidth <= 768;
 
-                // Get accurate navbar height and add mobile-specific offsets
-                const navbarHeight = navbar.getBoundingClientRect().height;
-                let additionalOffset = 0;
+                // Determine additional offset once (remains the same pre/post collapse)
+                const additionalOffset = isMobile ? 30 : 10;
 
-                if (isMobile) {
-                    // Mobile devices need more offset due to navbar styling and potential browser UI
-                    additionalOffset = 30;
-                } else {
-                    // Desktop devices need minimal offset
-                    additionalOffset = 10;
-                }
-
-                const targetPosition = targetElement.offsetTop - navbarHeight - additionalOffset;
-
-                // Function to perform scroll
+                // Function to perform scroll (re-calculates navbar height *after* any collapse animation)
                 const performScroll = () => {
+                    const navbar = document.querySelector('.navbar');
+                    const navbarHeight = navbar ? navbar.getBoundingClientRect().height : 0;
+                    const targetPosition = targetElement.offsetTop - navbarHeight - additionalOffset;
+
                     window.scrollTo({
                         top: Math.max(0, targetPosition),
                         behavior: 'smooth'
