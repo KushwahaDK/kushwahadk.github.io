@@ -44,14 +44,21 @@ function initSmoothScrolling() {
 
                 const isMobile = window.innerWidth <= 768;
 
-                // Determine additional offset once (remains the same pre/post collapse)
-                const additionalOffset = isMobile ? 30 : 10;
-
-                // Function to perform scroll (re-calculates navbar height *after* any collapse animation)
-                const performScroll = () => {
+                // Function to calculate total header height (navbar + scroll progress bar)
+                const calculateHeaderHeight = () => {
                     const navbar = document.querySelector('.navbar');
+                    const scrollProgress = document.getElementById('scroll-progress');
                     const navbarHeight = navbar ? navbar.getBoundingClientRect().height : 0;
-                    const targetPosition = targetElement.offsetTop - navbarHeight - additionalOffset;
+                    const scrollProgressHeight = scrollProgress ? scrollProgress.getBoundingClientRect().height : 0;
+                    return navbarHeight + scrollProgressHeight;
+                };
+
+                // Function to perform scroll (re-calculates header height *after* any collapse animation)
+                const performScroll = () => {
+                    const totalHeaderHeight = calculateHeaderHeight();
+                    // Reduce additional offset since we're now including scroll progress bar height
+                    const additionalOffset = isMobile ? 5 : 5; // Reduced from 30:10 to 5:5
+                    const targetPosition = targetElement.offsetTop - totalHeaderHeight - additionalOffset;
 
                     window.scrollTo({
                         top: Math.max(0, targetPosition),
@@ -297,6 +304,15 @@ function initMobileScrollFix() {
         isMobile = window.innerWidth <= 768;
     });
 
+    // Function to calculate total header height (navbar + scroll progress bar)
+    const calculateHeaderHeight = () => {
+        const navbar = document.querySelector('.navbar');
+        const scrollProgress = document.getElementById('scroll-progress');
+        const navbarHeight = navbar ? navbar.getBoundingClientRect().height : 0;
+        const scrollProgressHeight = scrollProgress ? scrollProgress.getBoundingClientRect().height : 0;
+        return navbarHeight + scrollProgressHeight;
+    };
+
     // Handle viewport changes that might affect scroll position
     window.addEventListener('orientationchange', function () {
         setTimeout(() => {
@@ -305,10 +321,9 @@ function initMobileScrollFix() {
             if (currentHash) {
                 const targetElement = document.getElementById(currentHash.substring(1));
                 if (targetElement) {
-                    const navbar = document.querySelector('.navbar');
-                    const navbarHeight = navbar.getBoundingClientRect().height;
-                    const additionalOffset = isMobile ? 30 : 10;
-                    const targetPosition = targetElement.offsetTop - navbarHeight - additionalOffset;
+                    const totalHeaderHeight = calculateHeaderHeight();
+                    const additionalOffset = isMobile ? 5 : 5; // Consistent with smooth scrolling
+                    const targetPosition = targetElement.offsetTop - totalHeaderHeight - additionalOffset;
 
                     window.scrollTo({
                         top: Math.max(0, targetPosition),
@@ -514,7 +529,19 @@ function initScrollProgressBar() {
     updatePosition();
     updateBar();
 
-    // Event listeners
-    window.addEventListener('resize', updatePosition);
+    // Event listeners - update position on resize to account for navbar height changes
+    window.addEventListener('resize', () => {
+        updatePosition();
+        updateBar();
+    });
     window.addEventListener('scroll', updateBar);
+    
+    // Also update position when navbar might change (e.g., mobile menu toggle)
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    if (navbarToggler) {
+        navbarToggler.addEventListener('click', () => {
+            // Small delay to allow for any navbar height changes
+            setTimeout(updatePosition, 100);
+        });
+    }
 } 
