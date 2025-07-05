@@ -1326,6 +1326,7 @@ html {
 /* --- Scroll Percentage Progress Bar --- */
 #scroll-progress {
     position: fixed;
+    top: 0;
     left: 0;
     height: 4px;
     width: 0%;
