@@ -511,13 +511,6 @@ function initScrollProgressBar() {
     const progressEl = document.getElementById('scroll-progress');
     if (!progressEl) return;
 
-    const navbar = document.querySelector('.navbar');
-
-    function updatePosition() {
-        const navHeight = navbar ? navbar.getBoundingClientRect().height : 0;
-        progressEl.style.top = navHeight + 'px';
-    }
-
     function updateBar() {
         const scrollTop = window.scrollY || document.documentElement.scrollTop;
         const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -525,23 +518,10 @@ function initScrollProgressBar() {
         progressEl.style.width = progress + '%';
     }
 
-    // Initial calculations
-    updatePosition();
+    // Initial calculation
     updateBar();
 
-    // Event listeners - update position on resize to account for navbar height changes
-    window.addEventListener('resize', () => {
-        updatePosition();
-        updateBar();
-    });
+    // Event listeners - only update the progress width
+    window.addEventListener('resize', updateBar);
     window.addEventListener('scroll', updateBar);
-    
-    // Also update position when navbar might change (e.g., mobile menu toggle)
-    const navbarToggler = document.querySelector('.navbar-toggler');
-    if (navbarToggler) {
-        navbarToggler.addEventListener('click', () => {
-            // Small delay to allow for any navbar height changes
-            setTimeout(updatePosition, 100);
-        });
-    }
 } 
