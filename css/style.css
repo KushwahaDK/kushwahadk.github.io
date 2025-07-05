@@ -965,18 +965,20 @@ footer {
         background: #000000 !important;
         backdrop-filter: none;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 0.75rem 0;
     }
 
     .navbar-brand {
         display: block !important;
         color: white !important;
         font-weight: 700;
+        font-size: 1.35rem;
     }
 
     .navbar-toggler {
         border: 1px solid rgba(255, 255, 255, 0.3);
         border-radius: 4px;
-        padding: 0.4rem 0.6rem;
+        padding: 0.3rem 0.5rem;
     }
 
     .navbar-toggler:focus {
@@ -1019,9 +1021,10 @@ footer {
     }
 
     .navbar-nav .nav-link {
-        padding: 0.75rem 1rem;
+        padding: 0.65rem 1rem;
         border-radius: 4px;
         margin-bottom: 0.25rem;
+        font-size: 0.85rem;
     }
 
     .navbar-nav .nav-link:hover {
